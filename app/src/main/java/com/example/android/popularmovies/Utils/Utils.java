@@ -22,7 +22,7 @@ public class Utils extends AppCompatActivity {
      */
     public static final String TMDB_MOVIE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String QUERY_PARAM = "api_key";
-    public static final String API_KEY = "f138fc50065f4f65157a63739530f7c3";
+    public static final String API_KEY = "";
     public static final String IMAGE_URL = "http://image.tmdb.org/t/p/";
     public static String QUERY_POPULAR_PATH = "popular";
     public static String QUERY_TOP_RATED_PATH = "top_rated";
