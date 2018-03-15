@@ -21,11 +21,9 @@
             android:layout_height="30dp"
             app:srcCompat="@drawable/rating"
             android:id="@+id/image_rating"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/image_date"
-            android:layout_marginStart="24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintLeft_toLeftOf="@+id/image_date"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/image_date" />
 
         <ImageView
             android:layout_width="30dp"
@@ -33,7 +31,7 @@
             app:srcCompat="@drawable/date_release"
             android:id="@+id/image_date"
             android:adjustViewBounds="false"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@+id/image_backdrop"
             android:layout_marginStart="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -44,33 +42,32 @@
             android:layout_height="30dp"
             app:srcCompat="@drawable/language"
             android:id="@+id/image_language"
-            app:layout_constraintRight_toRightOf="@+id/image_rating"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/image_rating"
             app:layout_constraintLeft_toLeftOf="@+id/image_rating"
-            app:layout_constraintHorizontal_bias="0.0" />
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/image_rating"
+            android:adjustViewBounds="true" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:srcCompat="@drawable/plot"
             android:id="@+id/image_plot"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/image_language"
-            app:layout_constraintRight_toRightOf="@+id/image_language"
-            app:layout_constraintLeft_toLeftOf="@+id/image_language" />
+            app:layout_constraintLeft_toLeftOf="@+id/image_language"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/image_language" />
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:contentDescription="ok"
             app:srcCompat="@android:color/holo_blue_bright"
             android:id="@+id/image_backdrop"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -80,11 +77,13 @@
             app:srcCompat="@drawable/fab_image"
             android:id="@+id/fab_favorite"
             app:elevation="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/title_tv"
+            app:layout_constraintTop_toTopOf="@+id/title_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/title_tv"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginTop="24dp"
+            app:layout_constraintRight_toRightOf="@+id/image_backdrop"
             android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginRight="16dp" />
 
         <TextView
             android:text="Title"
@@ -93,9 +92,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/title_tv"
             app:layout_constraintLeft_toLeftOf="@+id/image_backdrop"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            tools:layout_editor_absoluteY="233dp" />
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            app:layout_constraintTop_toTopOf="@+id/image_backdrop"
+            android:layout_marginTop="206dp" />
 
         <TextView
             android:text="Date"
@@ -105,9 +105,10 @@
             android:id="@+id/date_tv"
             app:layout_constraintTop_toTopOf="@+id/image_date"
             app:layout_constraintBottom_toBottomOf="@+id/image_date"
-            android:layout_marginStart="32dp"
+            app:layout_constraintVertical_bias="0.52"
+            android:layout_marginStart="24dp"
             app:layout_constraintLeft_toRightOf="@+id/image_date"
-            android:layout_marginLeft="32dp" />
+            android:layout_marginLeft="24dp" />
 
         <TextView
             android:text="Rating"
@@ -115,12 +116,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rating_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/image_rating"
-            app:layout_constraintRight_toRightOf="@+id/date_tv"
-            android:layout_marginStart="32dp"
-            app:layout_constraintLeft_toRightOf="@+id/image_rating"
-            android:layout_marginLeft="32dp"
-            app:layout_constraintTop_toTopOf="@+id/image_rating" />
+            app:layout_constraintLeft_toLeftOf="@+id/date_tv"
+            app:layout_constraintTop_toTopOf="@+id/image_rating"
+            app:layout_constraintBottom_toBottomOf="@+id/image_rating" />
 
         <TextView
             android:text="Language"
@@ -128,22 +126,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/language_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/image_language"
-            android:layout_marginStart="32dp"
-            app:layout_constraintLeft_toRightOf="@+id/image_language"
-            android:layout_marginLeft="32dp"
-            app:layout_constraintRight_toRightOf="@+id/rating_tv"
-            app:layout_constraintTop_toTopOf="@+id/image_language" />
+            app:layout_constraintLeft_toLeftOf="@+id/rating_tv"
+            app:layout_constraintTop_toTopOf="@+id/image_language"
+            app:layout_constraintBottom_toBottomOf="@+id/image_language" />
 
         <TextView
             android:text="Plot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/plot_tv"
+            app:layout_constraintLeft_toLeftOf="@+id/language_tv"
             app:layout_constraintBottom_toBottomOf="@+id/image_plot"
-            android:layout_marginStart="32dp"
-            app:layout_constraintLeft_toRightOf="@+id/image_plot"
-            android:layout_marginLeft="32dp"
             app:layout_constraintTop_toTopOf="@+id/image_plot" />
     </android.support.constraint.ConstraintLayout>
 

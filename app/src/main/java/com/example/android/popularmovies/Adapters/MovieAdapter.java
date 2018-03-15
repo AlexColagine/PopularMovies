@@ -22,13 +22,13 @@ import static com.example.android.popularmovies.Utils.Utils.IMAGE_URL;
  */
 
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder>{
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     final private ListItemClickListener mOnClickListener;
     private Context mContext;
     public List<Movie> movieList;
 
-    public MovieAdapter (Context context, List<Movie> movieList , ListItemClickListener listener ){
+    public MovieAdapter(Context context, List<Movie> movieList, ListItemClickListener listener) {
         this.mContext = context;
         this.mOnClickListener = listener;
         this.movieList = movieList;
@@ -36,7 +36,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.gridlayout_item , parent , false);
+        View itemView = LayoutInflater.from(mContext).inflate(R.layout.gridlayout_item, parent, false);
         return new MovieViewHolder(itemView);
     }
 
@@ -47,7 +47,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 .load(IMAGE_URL
                         .concat(IMAGE_SIZE[2])
                         .concat(currentMovie.getImage()))
-                .placeholder(R.drawable.progress_animation)
                 .into(holder.poster);
 
     }
@@ -57,10 +56,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return movieList.size();
     }
 
-    public Movie getItem(int position){
+    public Movie getItem(int position) {
         return movieList.get(position);
     }
-
 
 
     /**
@@ -71,7 +69,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder implements OnClickListener{
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
         ImageView poster;
 

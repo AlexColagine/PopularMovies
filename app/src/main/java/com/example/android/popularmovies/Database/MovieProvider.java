@@ -15,7 +15,7 @@ import android.util.Log;
  * Created by Alessandro on 28/02/2018.
  */
 
-public class MovieProvider  extends ContentProvider {
+public class MovieProvider extends ContentProvider {
 
     public static final String LOG_TAG = MovieProvider.class.getSimpleName();
 
@@ -25,7 +25,7 @@ public class MovieProvider  extends ContentProvider {
 
     static {
         // The content URI of the form "content://com.example.android.myinventory/stock"
-        sUriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_INVENTORY, MOVIE );
+        sUriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_INVENTORY, MOVIE);
 
         // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
         // For example, "content://com.example.android.myinventory/stock/3"
@@ -96,36 +96,14 @@ public class MovieProvider  extends ContentProvider {
     }
 
     private Uri insertMovie(Uri uri, ContentValues values) {
-
-        String title = values.getAsString(MovieContract.MovieEntry.COLUMN_TITLE);
-        if (title == null) {
-            throw new IllegalArgumentException("Movie requires a title");
-        }
-
-        String rating = values.getAsString(MovieContract.MovieEntry.COLUMN_RATING);
-        if (rating == null) {
-            throw new IllegalArgumentException("Movie requires a rating");
-        }
-
-        String date = values.getAsString(MovieContract.MovieEntry.COLUMN_DATE);
-        if (date == null) {
-            throw new IllegalArgumentException("Movie requires a date");
-        }
-
-        String image = values.getAsString(MovieContract.MovieEntry.COLUMN_IMAGE);
-        if (image == null) {
-            throw new IllegalArgumentException("Movie requires a image");
-        }
-
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        long id = database.insert(MovieContract.MovieEntry.TABLE_NAME, null , values);
+        long id = database.insert(MovieContract.MovieEntry.TABLE_NAME, null, values);
 
         if (id == -1) {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
             return null;
         }
-
 
         getContext().getContentResolver().notifyChange(uri, null);
 

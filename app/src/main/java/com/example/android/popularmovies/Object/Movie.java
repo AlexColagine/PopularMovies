@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public class Movie implements Parcelable {
 
+    private int id;
     private String title;
     private String image;
     private String plot;
@@ -17,8 +18,8 @@ public class Movie implements Parcelable {
     private String language;
     private String backdrop_image;
 
-
-    public Movie ( String title, String image, String plot, double rating, String date , String language , String backdrop_image){
+    public Movie (int id , String title, String image, String plot, double rating, String date , String language , String backdrop_image){
+        this.id = id;
         this.title = title;
         this.image = image;
         this.plot = plot;
@@ -26,6 +27,10 @@ public class Movie implements Parcelable {
         this.date = date;
         this.language = language;
         this.backdrop_image = backdrop_image;
+    }
+
+    public int getId(){
+        return id;
     }
 
     public String getTitle(){

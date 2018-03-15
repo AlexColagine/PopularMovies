@@ -1,12 +1,18 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.UI;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.android.popularmovies.Database.MovieContract;
 import com.example.android.popularmovies.Object.Movie;
+import com.example.android.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
 import static com.example.android.popularmovies.Utils.Utils.IMAGE_SIZE;
@@ -31,19 +37,28 @@ public class DetailActivity extends AppCompatActivity {
          */
         Bundle data = getIntent().getExtras();
         movieList = data.getParcelable(MOVIE);
+
         updateUi();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_favorite);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                insertFavorite();
+            }
+        });
+
     }
 
     /**
      * It used for update the UI of the Detail Movie
      */
-    private void updateUi(){
+    private void updateUi() {
         ImageView imageBackdrop = (ImageView) findViewById(R.id.image_backdrop);
         Picasso.with(this)
                 .load(IMAGE_URL
                         .concat(IMAGE_SIZE[5])
                         .concat(movieList.getBackdrop()))
-                .placeholder(R.drawable.progress_animation)
                 .into(imageBackdrop);
 
         TextView title = (TextView) findViewById(R.id.title_tv);
@@ -61,4 +76,21 @@ public class DetailActivity extends AppCompatActivity {
         TextView plot = (TextView) findViewById(R.id.plot_tv);
         plot.setText(movieList.getPlot());
     }
+
+    /**
+     * Add a Movie in Database --> Fragment --> Favorite
+     */
+    private void insertFavorite() {
+        ContentValues values = new ContentValues();
+        values.put(MovieContract.MovieEntry.COLUMN_TITLE, movieList.getTitle());
+        values.put(MovieContract.MovieEntry.COLUMN_RATING, movieList.getRating());
+        values.put(MovieContract.MovieEntry.COLUMN_DATE, movieList.getDate());
+        values.put(MovieContract.MovieEntry.COLUMN_IMAGE_POSTER, movieList.getImage());
+        values.put(MovieContract.MovieEntry.COLUMN_IMAGE_BACKDROP, movieList.getBackdrop());
+        values.put(MovieContract.MovieEntry.COLUMN_PLOT, movieList.getPlot());
+        values.put(MovieContract.MovieEntry.COLUMN_LANGUAGE, movieList.getLanguage());
+        getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, values);
+        Toast.makeText(this, "Movie saved in database", Toast.LENGTH_SHORT).show();
+    }
+
 }

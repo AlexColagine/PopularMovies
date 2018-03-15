@@ -18,17 +18,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.popularmovies.Adapters.MovieAdapter;
-import com.example.android.popularmovies.DetailActivity;
-import com.example.android.popularmovies.MovieLoader;
+import com.example.android.popularmovies.Loaders.MovieLoader;
 import com.example.android.popularmovies.Object.Movie;
 import com.example.android.popularmovies.R;
+import com.example.android.popularmovies.UI.DetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.android.popularmovies.Utils.Utils.MOVIE;
 import static com.example.android.popularmovies.Utils.Utils.QUERY_MOVIE;
-import static com.example.android.popularmovies.Utils.Utils.buildUrl;
+import static com.example.android.popularmovies.Utils.Utils.buildUrlMovie;
 import static com.example.android.popularmovies.Utils.Utils.calculateNoOfColumns;
 
 public class PopularRated extends Fragment implements LoaderManager.LoaderCallbacks<List<Movie>>, MovieAdapter.ListItemClickListener, SwipeRefreshLayout.OnRefreshListener {
@@ -61,6 +61,7 @@ public class PopularRated extends Fragment implements LoaderManager.LoaderCallba
 
         Connectivity();
         getLoaderManager().initLoader(LOADER_ID, null, this);
+
         return rootView;
 
     }
@@ -68,7 +69,7 @@ public class PopularRated extends Fragment implements LoaderManager.LoaderCallba
     /**
      * It used to verify if there is a connection (WiFi or data mobile)
      */
-    public void Connectivity(){
+    public void Connectivity() {
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
@@ -82,7 +83,7 @@ public class PopularRated extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public Loader<List<Movie>> onCreateLoader(int id, Bundle args) {
-        return new MovieLoader(getContext() , buildUrl(QUERY_MOVIE));
+        return new MovieLoader(getContext(), buildUrlMovie(QUERY_MOVIE));
     }
 
     @Override

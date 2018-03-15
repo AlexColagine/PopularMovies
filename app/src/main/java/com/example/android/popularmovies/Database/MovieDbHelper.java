@@ -23,15 +23,21 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_MOVIE = "CREATE TABLE " +
                 MovieContract.MovieEntry.TABLE_NAME + "(" +
                 MovieContract.MovieEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                MovieContract.MovieEntry.COLUMN_TITLE + " TEXT NOT NULL," +
-                MovieContract.MovieEntry.COLUMN_RATING + " TEXT NOT NULL," +
-                MovieContract.MovieEntry.COLUMN_DATE + " TEXT NOT NULL," +
-                MovieContract.MovieEntry.COLUMN_IMAGE + " TEXT NOT NULL )";
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " INT ," +
+                MovieContract.MovieEntry.COLUMN_TITLE + " TEXT," +
+                MovieContract.MovieEntry.COLUMN_RATING + " REAL," +
+                MovieContract.MovieEntry.COLUMN_DATE + " TEXT," +
+                MovieContract.MovieEntry.COLUMN_PLOT + " TEXT," +
+                MovieContract.MovieEntry.COLUMN_LANGUAGE + " TEXT," +
+                MovieContract.MovieEntry.COLUMN_IMAGE_BACKDROP + " TEXT," +
+                MovieContract.MovieEntry.COLUMN_IMAGE_POSTER + " TEXT )";
         db.execSQL(CREATE_TABLE_MOVIE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String SQL_DELETE_TABLE = "DROP TABLE IF EXISTS " + MovieContract.MovieEntry.TABLE_NAME;
+        db.execSQL(SQL_DELETE_TABLE);
+        onCreate(db);
     }
 }

@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
+    android:background="#E8EAF6">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Empty view for the list -->
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
 
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            app:srcCompat="@android:color/holo_blue_bright"
-            android:id="@+id/backdrop_favorite"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            android:scaleType="centerCrop" />
+            android:id="@+id/empty_shelter_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/favorite_image_yellow" />
 
-    </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/empty_title_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/empty_shelter_image"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:text="Database vuoto" />
 
-</ScrollView>
+        <TextView
+            android:id="@+id/empty_subtitle_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/empty_title_text"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/appbar_padding_top"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:text="Salva un film tra i preferiti" />
+    </RelativeLayout>
+
+</RelativeLayout>

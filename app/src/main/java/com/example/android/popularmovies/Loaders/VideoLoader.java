@@ -1,22 +1,22 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.Loaders;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
-import com.example.android.popularmovies.Object.Movie;
+import com.example.android.popularmovies.Object.Video;
 import com.example.android.popularmovies.Utils.QueryUtils;
 
 import java.util.List;
 
 /**
- * Created by Alessandro on 18/02/2018.
+ * Created by Alessandro on 15/03/2018.
  */
 
-public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
+public class VideoLoader extends AsyncTaskLoader<List<Video>> {
 
     private String mUrl;
 
-    public MovieLoader(Context context, String url) {
+    public VideoLoader(Context context, String url) {
         super(context);
         mUrl = url;
     }
@@ -29,13 +29,13 @@ public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
 
 
     @Override
-    public List<Movie> loadInBackground() {
+    public List<Video> loadInBackground() {
         if (mUrl == null) {
             return null;
         }
 
         // Perform the network request, parse the response, and extract a list of earthquakes.
-        return QueryUtils.fetchNewsData(mUrl);
+        return QueryUtils.fetchNewsDataVideo(mUrl);
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.UI;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.android.popularmovies.Fragments.Favorite;
 import com.example.android.popularmovies.Fragments.PopularRated;
+import com.example.android.popularmovies.R;
 
 import static com.example.android.popularmovies.Utils.Utils.QUERY_MOVIE;
 import static com.example.android.popularmovies.Utils.Utils.QUERY_POPULAR_PATH;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.top_rated_image_yellow,
             R.drawable.favorite_image_yellow
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
         setupTabIcons();
 
+        QUERY_MOVIE = QUERY_POPULAR_PATH;
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("NewApi")
             @Override
             public void onPageSelected(int position) {
-                switch(position){
+                switch (position) {
                     case 0:
                         QUERY_MOVIE = QUERY_POPULAR_PATH;
                         updateUiMostPopular();
@@ -99,13 +102,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
+
     @SuppressLint("NewApi")
-    private void updateUiMostPopular(){
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(imageResId[3], 0 , 0, 0);
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(imageResId[1], 0 , 0, 0);
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(imageResId[2], 0 , 0, 0);
+    private void updateUiMostPopular() {
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(imageResId[3], 0, 0, 0);
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(imageResId[1], 0, 0, 0);
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(imageResId[2], 0, 0, 0);
 
         tabOne.setTextColor(Color.WHITE);
         tabTwo.setTextColor(getColor(R.color.colorToolbar));
@@ -113,20 +116,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("NewApi")
-    private void updateUiTopRated(){
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(imageResId[0], 0 , 0, 0);
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(imageResId[4], 0 , 0, 0);
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(imageResId[2], 0 , 0, 0);
+    private void updateUiTopRated() {
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(imageResId[0], 0, 0, 0);
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(imageResId[4], 0, 0, 0);
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(imageResId[2], 0, 0, 0);
 
         tabOne.setTextColor(getColor(R.color.colorToolbar));
         tabTwo.setTextColor(Color.WHITE);
         tabThree.setTextColor(getColor(R.color.colorToolbar));
     }
+
     @SuppressLint("NewApi")
-    private void updateUiFavorite(){
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(imageResId[0], 0 , 0, 0);
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(imageResId[1], 0 , 0, 0);
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(imageResId[5], 0 , 0, 0);
+    private void updateUiFavorite() {
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(imageResId[0], 0, 0, 0);
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(imageResId[1], 0, 0, 0);
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(imageResId[5], 0, 0, 0);
 
         tabOne.setTextColor(getColor(R.color.colorToolbar));
         tabTwo.setTextColor(getColor(R.color.colorToolbar));
@@ -134,12 +138,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint({"InflateParams", "NewApi"})
-    private void setupTabIcons(){
+    private void setupTabIcons() {
 
         tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.name_fragment, null);
         tabOne.setText(R.string.most_popular);
         tabOne.setTextColor(Color.WHITE);
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(imageResId[3], 0 , 0, 0);
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(imageResId[3], 0, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
         tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.name_fragment, null);
@@ -224,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            switch(position){
+            switch (position) {
                 case 0:
                     return new PopularRated();
                 case 1:
