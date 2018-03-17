@@ -24,11 +24,11 @@ public class MovieProvider extends ContentProvider {
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
-        // The content URI of the form "content://com.example.android.myinventory/stock"
+        // The content URI of the form "content://com.example.android.popularmovies.Database/movie"
         sUriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_INVENTORY, MOVIE);
 
         // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
-        // For example, "content://com.example.android.myinventory/stock/3"
+        // For example, "content://com.example.android.popularmovies.Database/movie/3"
         sUriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_INVENTORY + "/#", MOVIE_ID);
     }
 
@@ -56,7 +56,8 @@ public class MovieProvider extends ContentProvider {
                         null, null, sortOrder);
                 break;
             case MOVIE_ID:
-                selection = MovieContract.MovieEntry._ID + "=?";
+                //selection = MovieContract.MovieEntry._ID + "=?";
+                selection = MovieContract.MovieEntry.COLUMN_MOVIE_ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
 
                 cursor = database.query(MovieContract.MovieEntry.TABLE_NAME, projection, selection, selectionArgs,
@@ -128,7 +129,8 @@ public class MovieProvider extends ContentProvider {
                 break;
             case MOVIE_ID:
                 // Delete a single row given by the ID in the URI
-                selection = MovieContract.MovieEntry._ID + "=?";
+                //selection = MovieContract.MovieEntry._ID + "=?";
+                selection = MovieContract.MovieEntry.COLUMN_MOVIE_ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 rowsDeleted = database.delete(MovieContract.MovieEntry.TABLE_NAME, selection, selectionArgs);
                 break;

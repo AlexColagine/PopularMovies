@@ -4,9 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-
 import com.example.android.popularmovies.Object.Movie;
-
 /**
  * Created by Alessandro on 02/03/2018.
  */
@@ -18,11 +16,11 @@ public class Utils extends AppCompatActivity {
      * Strings to create URL in buildUrlMovie method.
      * * @API_KEY
      * ** @TMDB_MOVIE_URL
-     * *** @QUERY_PARAM  ---> are unique for all url method (Movie , Review , Video)
+     * *** @QUERY_PARAM ---> are unique for all url method (Movie , Review , Video)
      */
     public static final String TMDB_MOVIE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String QUERY_PARAM = "api_key";
-    public static final String API_KEY = "";
+    public static final String API_KEY = "f138fc50065f4f65157a63739530f7c3";
     public static final String IMAGE_URL = "http://image.tmdb.org/t/p/";
     public static String QUERY_POPULAR_PATH = "popular";
     public static String QUERY_TOP_RATED_PATH = "top_rated";
@@ -36,7 +34,7 @@ public class Utils extends AppCompatActivity {
     /**
      * Strings to create URL in buildUrlReviewVideo method.
      */
-    public static String QUERY_ID_PATH = String.valueOf(currentMovie.getId());
+    //public static String QUERY_ID_PATH = String.valueOf(currentMovie.getId());
     public static String QUERY_REVIEW_PATH = "reviews";
     public static String QUERY_VIDEO_PATH = "trailers";
 
@@ -101,11 +99,11 @@ public class Utils extends AppCompatActivity {
         return baseUri.toString();
     }
 
-    public static String buildUrlReview_Video(String queryReview) {
+    public static String buildUrlReview_Video(String query) {
         Uri baseUri = Uri.parse(TMDB_MOVIE_URL)
                 .buildUpon()
-                .appendPath(QUERY_ID_PATH)
-                .appendPath(queryReview)
+                // .appendPath(QUERY_ID_PATH)
+                .appendPath(query)
                 .appendQueryParameter(QUERY_PARAM, API_KEY)
                 .build();
         return baseUri.toString();

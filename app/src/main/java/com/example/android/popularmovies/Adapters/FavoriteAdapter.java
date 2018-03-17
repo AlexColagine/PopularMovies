@@ -65,9 +65,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
         String plot_db = mCursor.getString(mCursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_PLOT));
         String language_db = mCursor.getString(mCursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_LANGUAGE));
-        int movie__id_db = mCursor.getInt(mCursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_ID));
+        int movie_id_db = mCursor.getInt(mCursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_ID));
         // Retrieve the id from the cursor and
-        long id = mCursor.getLong(mCursor.getColumnIndex(MovieContract.MovieEntry._ID));
+        //long id = mCursor.getLong(mCursor.getColumnIndex(MovieContract.MovieEntry._ID));
 
         holder.titleTextView.setText(title_db);
         holder.ratingTextView.setText(ratingString);
@@ -86,9 +86,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                         .concat(backdrop_db))
                 .into(holder.backdropImageView);
 
-        holder.itemView.setTag(id);
+        holder.itemView.setTag(movie_id_db);
 
-        final Movie movieFavorite = new Movie(movie__id_db, title_db, poster_db, plot_db, rating_db, date_db, language_db, backdrop_db);
+        final Movie movieFavorite = new Movie(movie_id_db, title_db, poster_db, plot_db, rating_db, date_db, language_db, backdrop_db);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
